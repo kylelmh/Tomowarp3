@@ -25,6 +25,7 @@
 # Authors: Erika Tudisco, Edward Andò, Stephen Hall, Rémi Cailletaud
 
 
+from __future__ import print_function
 import os, sys, time, getopt
 import logging, traceback
 from tomowarp_runfile import tomowarp_runfile
@@ -121,11 +122,11 @@ if __name__ == "__main__":
 
         inputfile = args[0]
         try:
-          print '\nInput file is "%s"\n'%( inputfile )
+          print('\nInput file is "%s"\n'%( inputfile ))
           data = input_parameters_read( inputfile, data )
         except Exception as exc:
           try: logging.err.error( exc )
-          except: print  exc 
+          except: print(exc) 
           sys.exit(2)
         
         try:
@@ -143,4 +144,4 @@ if __name__ == "__main__":
         except Exception as exc:
           #logging.err.debug( traceback.format_exc() )
           try: logging.err.error( exc.message )
-          except: print  exc.message 
+          except: print(exc.message) 

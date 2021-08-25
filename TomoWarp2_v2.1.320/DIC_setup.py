@@ -35,6 +35,7 @@ INPUTS:
 OUTPUTS:
   - filled-in kinematics
 """
+from __future__ import print_function
 
 import sys, time
 import numpy
@@ -132,7 +133,7 @@ def DIC_setup( kinematics, data, q_data_requests, workerQueues ):
 
     if extentsCheck.any() :
       try: logging.err.error("DIC_setup(): The memory limit set does not fulfil the required vertical extents for at least one node")
-      except: print "DIC_setup(): The memory limit set does not fulfil the required vertical extents for at least one node"
+      except: print("DIC_setup(): The memory limit set does not fulfil the required vertical extents for at least one node")
       for workerNumber in range( data.nWorkers ):
           q_nodes.put( [ "STOP" ] )
       return
@@ -206,7 +207,7 @@ def DIC_setup( kinematics, data, q_data_requests, workerQueues ):
             
             if nodesProcessedTotal%printInterval == 0:
               
-                  print "\r\tCompleted node number %05i  ( %2.2f %% )"%( nodesProcessedTotal, 100*(nodesProcessedTotal)/float(nNodes_to_correlate) ),
+                  print("\r\tCompleted node number %05i  ( %2.2f %% )"%( nodesProcessedTotal, 100*(nodesProcessedTotal)/float(nNodes_to_correlate) ), end=' ')
 
                   # --- Calculation of remaining time ---
                   calculationTimeB = time.time()
@@ -221,7 +222,7 @@ def DIC_setup( kinematics, data, q_data_requests, workerQueues ):
 
 
                   # 2014-10-03 EA: Estimating computation time between printouts...
-                  print "\tTime remaining = ~%s\033[K"%( display_time( secondsRemaining ) ),
+                  print("\tTime remaining = ~%s\033[K"%( display_time( secondsRemaining ) ), end=' ')
                   sys.stdout.flush()
 
                   # update counters:

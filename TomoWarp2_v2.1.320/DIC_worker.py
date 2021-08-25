@@ -35,6 +35,7 @@ INPUTS:
   - q_data to receive data from data_delivery_worker
   - "data" structure
 """
+from __future__ import print_function
 
 import time
 import numpy
@@ -53,7 +54,7 @@ def DIC_worker( workerNumber, q_nodes, q_results, q_data_requests, q_data, data 
 
     time.sleep( 1 )
     try: logging.log.info("DIC_worker %i: Started up"%( workerNumber ))
-    except: print "DIC_worker %i: Started up"%( workerNumber )
+    except: print("DIC_worker %i: Started up"%( workerNumber ))
 
     while True:
         #time.sleep( 1 )

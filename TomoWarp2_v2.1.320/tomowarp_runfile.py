@@ -28,6 +28,7 @@
 Run file that starts and stop data_delivery_worker, calls the DIC_setup function, 
 save kinematics results and run the post process.
 """
+from __future__ import print_function
 
 import os, sys, time, getopt
 import re, traceback
@@ -109,16 +110,16 @@ def tomowarp_runfile( data ):
                           "   * Node positions Z:"+str( nodes_z )+"\n"          \
                           "   * Node positions Y:"+str( nodes_y )+"\n"          \
                           "   * Node positions X:"+str( nodes_x )+"\n" )
-        except: print  "* Identified "+str(int(kinematics[-1,0]+1))+" Node(s)\n" \
+        except: print("* Identified "+str(int(kinematics[-1,0]+1))+" Node(s)\n" \
                           "   * Node positions Z:"+str( nodes_z )+"\n"          \
                           "   * Node positions Y:"+str( nodes_y )+"\n"          \
-                          "   * Node positions X:"+str( nodes_x )+"\n" 
+                          "   * Node positions X:"+str( nodes_x )+"\n") 
 
     if data.prior_file != None:
 
         # Load a prior file and try to figure out whether the node spacing is the the same as what we want...
         try: logging.log.info( " Loading Prior file: %s"%(data.prior_file) )
-        except: print " Loading Prior file: %s"%(data.prior_file) 
+        except: print(" Loading Prior file: %s"%(data.prior_file)) 
         prior = ReadTSV( data.prior_file,  "NodeNumber", [ "Zpos", "Ypos", "Xpos", "Zdisp", "Ydisp", "Xdisp",  "Zrot", "Yrot", "Xrot","CC", "Error" ], [1,0] )
 
         # sort the prior to be sure it is organised
@@ -152,7 +153,7 @@ def tomowarp_runfile( data ):
 
 
     try: logging.log.info( "Nodes To Process = %i"%(nodesToProcess.shape[0]) )
-    except: print  "Nodes To Process = %i"%(nodesToProcess.shape[0]) 
+    except: print("Nodes To Process = %i"%(nodesToProcess.shape[0])) 
 
     if nodesToProcess.shape[0] != 0:
       try:
@@ -184,7 +185,7 @@ def tomowarp_runfile( data ):
     minutes = int(runTime/(60) ) - 60*hours
     seconds = runTime - 60*60*hours - 60*minutes
     try: logging.log.info( "TIME: I think I ran for: %02i:%02i:%02i"%( hours, minutes, seconds ) )
-    except: print "TIME: I think I ran for: %02i:%02i:%02i"%( hours, minutes, seconds ) 
+    except: print("TIME: I think I ran for: %02i:%02i:%02i"%( hours, minutes, seconds )) 
     
     try:
       logging.log.removeHandler(fh_log)

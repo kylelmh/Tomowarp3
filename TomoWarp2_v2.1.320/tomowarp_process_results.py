@@ -25,6 +25,7 @@
 # Authors: Erika Tudisco, Edward Andò, Stephen Hall, Rémi Cailletaud
 
 
+from __future__ import print_function
 import os, sys, time, getopt
 
 from tools.print_help import help_process_results
@@ -114,14 +115,14 @@ if __name__ == "__main__":
         elif opt in ("--strain_mode"):
             if arg == "smallStrains" or arg == "largeStrains" or arg == 'tetrahedralStrains' or arg == 'largeStrainsCentred':
                 data['strain_mode'] = arg
-                print "tomowarp_process_results(): Strain mode {} selected".format( data['strain_mode'] )
+                print("tomowarp_process_results(): Strain mode {} selected".format( data['strain_mode'] ))
         elif opt in ("--correct_pixel_size"):
             exec ("correct_pixel_size ="+arg )
             data['pixel_size_ratio'] = correct_pixel_size[0]
             data['image_centre'] = correct_pixel_size[1:4]
 
 
-    print "  -> Reading a kinematics field..."
+    print("  -> Reading a kinematics field...")
     kinematics = ReadTSV( file_kinematics,  "NodeNumber", [ "Zpos", "Ypos", "Xpos", "Zdisp", "Ydisp", "Xdisp",  "Zrot", "Yrot", "Xrot", "CC", "Error" ], [1,0] ).astype( '<f4' )
 
     # Create data object
