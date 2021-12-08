@@ -1,6 +1,6 @@
 import os, sys
-from Tkinter import *
-import Tkconstants, tkFileDialog, tkMessageBox
+from tkinter import *
+import Tkconstants, filedialog, tkMessageBox
 
 from guiFunctions import *
 
@@ -20,7 +20,7 @@ class Optional_setup(Frame):
 
     def choose_file( self ):
         from minimalFrame import Minimal_setup
-        self.variables['prior_file'].set( tkFileDialog.askopenfilename( parent=self.master, initialdir=Minimal_setup.variables['DIR_out'].get(), title='Please select a priof file' ) )
+        self.variables['prior_file'].set( filedialog.askopenfilename( parent=self.master, initialdir=Minimal_setup.variables['DIR_out'].get(), title='Please select a priof file' ) )
 
     def createWidgets(self):
 

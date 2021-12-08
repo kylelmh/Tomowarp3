@@ -30,8 +30,7 @@ from __future__ import absolute_import
 import os, sys
 from os.path import expanduser
 import logging
-from Tkinter import *
-import Tkconstants, tkFileDialog, tkMessageBox
+from tkinter import *
 
 from .Frames import *
 from .guiFunctions import *
@@ -56,7 +55,7 @@ class Postproc_setup(Frame):
       # Function to select a folder and set the corresponding variable
       initDir = self.variables['DIR_out'].get()
       if initDir == expanduser( "~" ) or initDir == '': initDir = self.master.master.homeDir
-      chosenDir = tkFileDialog.askdirectory( parent=self.master, initialdir=initDir, title='Please select a directory' )
+      chosenDir = filedialog.askdirectory( parent=self.master, initialdir=initDir, title='Please select a directory' )
       self.variables['DIR_out'].set( chosenDir )
       self.master.master.homeDir = chosenDir
 
@@ -64,7 +63,7 @@ class Postproc_setup(Frame):
       # Function to select an output file and set the corresponding variable
       initDir = os.path.dirname( self.variables['file_kinematics'].get() )
       if initDir == expanduser( "~" ) or initDir == "": initDir = self.master.master.homeDir
-      file_kinematics = tkFileDialog.askopenfilename( parent=self.master, initialdir=initDir,\
+      file_kinematics = filedialog.askopenfilename( parent=self.master, initialdir=initDir,\
             title='Please select DIC output file', filetypes = [ ("Output Files", "*.tsv"), ('All','*') ] )
       self.variables['file_kinematics'].set( file_kinematics )
       self.master.master.homeDir = os.path.dirname(file_kinematics)
@@ -353,7 +352,7 @@ class Postproc_setup(Frame):
         try:
           initDir = os.path.dirname( self.variables['file_kinematics'].get() )
           if initDir == expanduser( "~" ) or initDir == "": initDir = self.master.master.homeDir
-          outFile = tkFileDialog.asksaveasfilename(initialfile='%s_filtered'%(self.variables['output_name'].get()), \
+          outFile = filedialog.asksaveasfilename(initialfile='%s_filtered'%(self.variables['output_name'].get()), \
               initialdir=initDir, defaultextension=".tsv", filetypes = [ ("Output Files", "*.tsv"), ('All','*') ])
         except:
             raise Exception('Please select a file') 

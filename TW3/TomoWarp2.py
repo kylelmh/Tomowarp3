@@ -103,8 +103,6 @@ if __name__ == "__main__":
           data['jointFiles'] = True
 
     configLogging()
-    # Make sure prints come out straight away
-    sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
 
     if startGUI:
         try:

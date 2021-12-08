@@ -25,23 +25,23 @@
 # Authors: Erika Tudisco, Edward Andò, Stephen Hall, Rémi Cailletaud
 
 from __future__ import print_function
-import Tkinter, Tkconstants, tkFileDialog
+import tkinter, Tkconstants, tkFileDialog
 
-#class TkFileDialogExample(Tkinter.Frame):
+#class TkFileDialogExample(tkinter.Frame):
 
   #def __init__(self, root):
 
-    #Tkinter.Frame.__init__(self, root)
+    #tkinter.Frame.__init__(self, root)
 
     ## options for buttons
     #button_opt = {'fill': Tkconstants.BOTH, 'padx': 5, 'pady': 5}
 
     ## define buttons
-    ##Tkinter.Button(self, text='askopenfile', command=self.askopenfile).pack(**button_opt)
-    ##Tkinter.Button(self, text='askopenfilename', command=self.askopenfilename).pack(**button_opt)
-    ##Tkinter.Button(self, text='asksaveasfile', command=self.asksaveasfile).pack(**button_opt)
-    #Tkinter.Button(self, text='asksaveasfilename', command=self.asksaveasfilename).pack(**button_opt)
-    ##Tkinter.Button(self, text='askdirectory', command=self.askdirectory).pack(**button_opt)
+    ##tkinter.Button(self, text='askopenfile', command=self.askopenfile).pack(**button_opt)
+    ##tkinter.Button(self, text='askopenfilename', command=self.askopenfilename).pack(**button_opt)
+    ##tkinter.Button(self, text='asksaveasfile', command=self.asksaveasfile).pack(**button_opt)
+    #tkinter.Button(self, text='asksaveasfilename', command=self.asksaveasfilename).pack(**button_opt)
+    ##tkinter.Button(self, text='askdirectory', command=self.askdirectory).pack(**button_opt)
     
     ## define options for opening or saving a file
     #self.file_opt = options = {}
@@ -95,8 +95,8 @@ import Tkinter, Tkconstants, tkFileDialog
       ##return open(filename, 'w')
     #print fileName
     
-    #var   = Tkinter.StringVar()
-    #label = Tkinter.Message( root, textvariable=var )
+    #var   = tkinter.StringVar()
+    #label = tkinter.Message( root, textvariable=var )
     #var.set( "Your filename is %s"%(fileName))
     #label.pack() 
   
@@ -110,7 +110,7 @@ import Tkinter, Tkconstants, tkFileDialog
 
 
 #if __name__=='__main__':
-  #root = Tkinter.Tk()
+  #root = tkinter.Tk()
   #TkFileDialogExample(root).pack()
   
   ##var = StringVar()
@@ -128,10 +128,10 @@ import Tkinter, Tkconstants, tkFileDialog
 #   - http://tkinter.unpythonic.net/wiki/tkFileDialog
 #   - http://code.activestate.com/recipes/438123-file-tkinter-dialogs/
 
-import Tkinter, tkFileDialog
+import tkinter, tkFileDialog
 import os.path
 
-root = Tkinter.Tk()
+root = tkinter.Tk()
 
 currentRow = 0
 
@@ -143,19 +143,19 @@ def chooseDIR_image_1(  ):
     DIR_image_1 = tkFileDialog.askdirectory(parent=root,initialdir=os.path.expanduser("~"),title='Please select a directory for Image 1')
     if len( DIR_image_1 ) > 0:
         print("You chose %s" % DIR_image_1)
-        entryDIR_image_1.delete( 0, Tkinter.END )
+        entryDIR_image_1.delete( 0, tkinter.END )
         entryDIR_image_1.insert( 0, DIR_image_1 )
     return DIR_image_1
 
-labelDIR_image_1 = Tkinter.Label( root, text="Image 1 Directory" )
+labelDIR_image_1 = tkinter.Label( root, text="Image 1 Directory" )
 labelDIR_image_1.grid( row=currentRow, column=0 )
 
-entryDIR_image_1 = Tkinter.Entry( root )
+entryDIR_image_1 = tkinter.Entry( root )
 entryDIR_image_1.grid( row=currentRow, column=1 )
-entryDIR_image_1.delete( 0, Tkinter.END )
+entryDIR_image_1.delete( 0, tkinter.END )
 entryDIR_image_1.insert( 0, DIR_image_1 )
 
-buttonDIR_image_1 = Tkinter.Button( root, text="Choose directory for Image 1", command=chooseDIR_image_1 )
+buttonDIR_image_1 = tkinter.Button( root, text="Choose directory for Image 1", command=chooseDIR_image_1 )
 buttonDIR_image_1.grid( row=currentRow, column=2 )
 
 
@@ -168,19 +168,19 @@ def chooseDIR_image_2(  ):
     DIR_image_2 = tkFileDialog.askdirectory(parent=root,initialdir=os.path.expanduser("~"),title='Please select a directory for Image 2')
     if len( DIR_image_2 ) > 0:
         print("You chose %s" % DIR_image_2)
-        entryDIR_image_2.delete( 0, Tkinter.END )
+        entryDIR_image_2.delete( 0, tkinter.END )
         entryDIR_image_2.insert( 0, DIR_image_2 )
     return DIR_image_2
 
-labelDIR_image_2 = Tkinter.Label( root, text="Image 2 Directory" )
+labelDIR_image_2 = tkinter.Label( root, text="Image 2 Directory" )
 labelDIR_image_2.grid( row=currentRow, column=0 )
 
-entryDIR_image_2 = Tkinter.Entry( root )
+entryDIR_image_2 = tkinter.Entry( root )
 entryDIR_image_2.grid( row=currentRow, column=1 )
-entryDIR_image_2.delete( 0, Tkinter.END )
+entryDIR_image_2.delete( 0, tkinter.END )
 entryDIR_image_2.insert( 0, DIR_image_2 )
 
-buttonDIR_image_2 = Tkinter.Button( root, text="Choose directory for Image 2", command=chooseDIR_image_2 )
+buttonDIR_image_2 = tkinter.Button( root, text="Choose directory for Image 2", command=chooseDIR_image_2 )
 buttonDIR_image_2.grid( row=currentRow, column=2 )
 
 
@@ -188,8 +188,8 @@ buttonDIR_image_2.grid( row=currentRow, column=2 )
 currentRow += 1
 
 
-CheckVar1 = Tkinter.IntVar( False )
-C1 = Tkinter.Checkbutton( root, text = "Output CC field in %", variable = CheckVar1, \
+CheckVar1 = tkinter.IntVar( False )
+C1 = tkinter.Checkbutton( root, text = "Output CC field in %", variable = CheckVar1, \
                  onvalue = 1, offvalue = 0, height=5, \
                  width = 20)
 C1.grid( row=currentRow, column=0 )
@@ -199,16 +199,16 @@ C1.grid( row=currentRow, column=0 )
 # ======== Menu for Image Mode:
 currentRow += 1
 
-class MyOptionMenu(  Tkinter.OptionMenu ):
+class MyOptionMenu(  tkinter.OptionMenu ):
     def __init__(self, master, status, *options):
-        self.var = Tkinter.StringVar(master)
+        self.var = tkinter.StringVar(master)
         self.var.set(status)
-        Tkinter.OptionMenu.__init__(self, master, self.var, *options)
+        tkinter.OptionMenu.__init__(self, master, self.var, *options)
         #self.config(font=('calibri',(10)),bg='white',width=12)
         #self['menu'].config(font=('calibri',(10)),bg='white')
 
 
-labelImage_format = Tkinter.Label( root, text="Image Format" )
+labelImage_format = tkinter.Label( root, text="Image Format" )
 labelImage_format.grid( row=currentRow, column=0 )
 
 optionMenuImage_format = MyOptionMenu( root, 'Image Type', 'auto', 'Tiff', 'Raw', 'EDF' )
@@ -220,15 +220,15 @@ print((optionMenuImage_format.var).get())
 # ======== Button to print chosen variables:
 currentRow += 1
 
-class MyOptionMenu(  Tkinter.OptionMenu ):
+class MyOptionMenu(  tkinter.OptionMenu ):
     def __init__(self, master, status, *options):
-        self.var = Tkinter.StringVar(master)
+        self.var = tkinter.StringVar(master)
         self.var.set(status)
-        Tkinter.OptionMenu.__init__(self, master, self.var, *options)
+        tkinter.OptionMenu.__init__(self, master, self.var, *options)
         #self.config(font=('calibri',(10)),bg='white',width=12)
         #self['menu'].config(font=('calibri',(10)),bg='white')
 
-buttonDIR_image_2 = Tkinter.Button( root, text="Print chosen variables", command=print_varibales )
+buttonDIR_image_2 = tkinter.Button( root, text="Print chosen variables", command=print_varibales )
 buttonDIR_image_2.grid( row=currentRow, column=2 )
 
 

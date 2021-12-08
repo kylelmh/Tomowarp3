@@ -27,9 +27,8 @@
 from __future__ import absolute_import
 import os, sys
 from os.path import expanduser
-from Tkinter import *
-import Tkconstants, tkFileDialog, tkMessageBox
-
+from tkinter import *
+from tkinter import filedialog
 from .guiFunctions import *
 from .optionalFrame import *
 
@@ -48,7 +47,7 @@ class Minimal_setup(Frame):
       # Function to select a folder and set the corresponding variable
       initDir = self.variables[var].get()
       if initDir == expanduser( "~" ): initDir = self.master.master.homeDir
-      chosenDir = tkFileDialog.askdirectory( parent=self.master, initialdir=initDir, title='Please select a directory' )
+      chosenDir = filedialog.askdirectory( parent=self.master, initialdir=initDir, title='Please select a directory' )
       self.variables[var].set( chosenDir )
       self.master.master.homeDir = chosenDir
 
@@ -117,13 +116,13 @@ class Minimal_setup(Frame):
       
       if not self.variables['Advanced'].get():      
           try:
-            srcWin = abs( self.variables['search_window'      ][ self.coordLabelExt[1] ].get() )
+            srcWin = abs( self.variables['search_window'][ self.coordLabelExt[1] ].get())
             for field in self.coordLabelExt:
                 if 'low' in field and srcWin is not None:
                     self.variables['search_window'][field].set( - srcWin )
                 else:
                     self.variables['search_window'][field].set(   srcWin )
-          except ValueError:
+          except TypeError:
             pass
           
           try:
@@ -145,7 +144,7 @@ class Minimal_setup(Frame):
         try: self.winframe.destroy()
         except: pass
 
-        self.redefineVariables()
+        # self.redefineVariables()
         self.winframe = DVCparameters(master=self)
         self.winframe.grid(row=4, column=0, columnspan=7, sticky=E+W, pady=5)
         

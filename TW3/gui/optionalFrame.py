@@ -27,8 +27,7 @@
 from __future__ import absolute_import
 import os, sys
 from os.path import expanduser
-from Tkinter import *
-import Tkconstants, tkFileDialog, tkMessageBox
+from tkinter import *
 
 from .guiFunctions import *
 
@@ -49,7 +48,7 @@ class Optional_setup(Frame):
       # Function to select a prior file and set the corresponding variable
       initDir = os.path.dirname( self.variables['prior_file'].get() )
       if initDir == expanduser( "~" ) or initDir == "": initDir = self.master.master.homeDir
-      priorFile = tkFileDialog.askopenfilename( parent=self.master, initialdir=initDir,\
+      priorFile = filedialog.askopenfilename( parent=self.master, initialdir=initDir,\
             title='Please select a priof file', filetypes = [ ("Output Files", "*.tsv"), ('All','*') ] )
       self.variables['prior_file'].set( priorFile )
       self.master.master.homeDir = os.path.dirname(priorFile)

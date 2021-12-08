@@ -26,7 +26,7 @@
 
 from __future__ import print_function
 from __future__ import absolute_import
-from Tkinter import *
+from tkinter import *
 from tools.tsv_tools import ReadTSV
 import numpy
 from .colormap import Fire

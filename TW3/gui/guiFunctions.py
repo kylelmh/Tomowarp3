@@ -25,8 +25,7 @@
 # Authors: Erika Tudisco, Edward Andò, Stephen Hall, Rémi Cailletaud
 
 import os, sys
-from Tkinter import *
-import tkFileDialog
+from tkinter import *
 from PIL import Image, ImageTk
 import numpy
 

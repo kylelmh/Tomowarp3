@@ -31,8 +31,8 @@ from __future__ import print_function
 from __future__ import absolute_import
 import os, sys, platform
 from os.path import expanduser
-from Tkinter import *
-import Tkconstants, tkFileDialog, tkMessageBox, ttk
+from tkinter import *
+from tkinter import ttk
 
 from .guiFunctions import *
 from .Frames import *
@@ -43,7 +43,6 @@ from .postprocFrame import *
 from tools.print_variable import pv
 from tools.input_parameters import input_parameters
 from tools.input_parameters_read import input_parameters_read
-
 
 def createFrames( root, data ):
     # Function that creates three tabs and the frame inside them
@@ -98,8 +97,8 @@ def loadFile( root, inputFile=None, data={} ):
     # Function that read an input file and update the variables in the GUI
     try:
         if inputFile==None: 
-          inputFile = tkFileDialog.askopenfilename(parent=root, title='Choose a file', initialdir=root.homeDir)
-        #if inputFile==None: inputFile = tkFileDialog.askopenfilename(parent=root, title='Choose a file', initialdir=root.minimal.variables['DIR_out'].get())
+          inputFile = filedialog.askopenfilename(parent=root, title='Choose a file', initialdir=root.homeDir)
+        #if inputFile==None: inputFile = filedialog.askopenfilename(parent=root, title='Choose a file', initialdir=root.minimal.variables['DIR_out'].get())
         if not ( inputFile=='' or inputFile == () ):
           root.homeDir =  os.path.dirname(inputFile)
           try: logging.log.info( pv( [inputFile], '', False ) ); 

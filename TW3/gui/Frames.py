@@ -27,8 +27,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 import os, sys, time
-from Tkinter import *
-import Tkconstants, tkFileDialog, tkMessageBox
+from tkinter import *
 import re, traceback
 
 from .guiFunctions import *
@@ -105,7 +104,7 @@ class ControlButton(Frame):
         self.message.set("Saving...")
         
         # location and file name are asked
-        filename = tkFileDialog.asksaveasfilename(initialfile='DIC_input_parameters_DRAFT',defaultextension=".txt")
+        filename = filedialog.asksaveasfilename(initialfile='DIC_input_parameters_DRAFT',defaultextension=".txt")
         # all the variable in data structure are saved in the file
         save_inputFile( filename, data )
 
@@ -140,7 +139,7 @@ class ControlButton(Frame):
 
             try:
               # Before running the analysis the program asks to save the input parameters
-              filename = tkFileDialog.asksaveasfilename(initialfile='DIC_input_parameters',defaultextension=".txt", initialdir=self.master.minimal.variables['DIR_out'].get())
+              filename = filedialog.asksaveasfilename(initialfile='DIC_input_parameters',defaultextension=".txt", initialdir=self.master.minimal.variables['DIR_out'].get())
               save_inputFile( filename, data )
             except:
               raise Exception('Please select a file')
