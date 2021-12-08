@@ -44,6 +44,7 @@ OUTPUTS:
 - Connectivity
 - Cell index
 """
+from __future__ import print_function
 
 # We want to calculate the derivative of the displacements in all directions:
 # du                                            dShapeFunction    dShapeFunction    ds                     ds
@@ -59,7 +60,7 @@ from tools.print_variable import pv
 def regular_strain_large_strain( positions, displacements, calculateConnectivity=False ):
 
   try: logging.log.info("regular_strain_large_strain: Calculating strains in Large Deformations framework...")
-  except: print "regular_strain_large_strain: Calculating strains in Large Deformations framework..."
+  except: print("regular_strain_large_strain: Calculating strains in Large Deformations framework...")
 
   SFderivative        = numpy.zeros( ( 3, 8 ) ) # Derivative of shape functions from F.E.
   relNodePos          = numpy.zeros( ( 8, 3 ) ) # RELATIVE Node positions
@@ -176,7 +177,7 @@ def regular_strain_large_strain( positions, displacements, calculateConnectivity
   #-    i.e., fill in the nodalDisplacements matrix  numpy.zeros( ( 8, 3 ) )            --
   #-----------------------------------------------------------------------
   for z in range( len(nodes_z) - 1 ):
-    print "\tregular_strain_large_strain: Working on z=%04i/%04i\r"%( z, len(nodes_z)-1 ),
+    print("\tregular_strain_large_strain: Working on z=%04i/%04i\r"%( z, len(nodes_z)-1 ), end=' ')
 
     for y in range( len(nodes_y) - 1 ):
       for x in range( len(nodes_x) - 1 ):
@@ -252,6 +253,6 @@ def regular_strain_large_strain( positions, displacements, calculateConnectivity
                 cellIndex = numpy.append( cellIndex, x + y*(len(nodes_x)-1) + z*(len(nodes_x)-1)*(len(nodes_y)-1) )
 
   try: logging.log.info("regular_strain_large_strain: strain calculation done.")
-  except: print "regular_strain_large_strain: strain calculation done."
+  except: print("regular_strain_large_strain: strain calculation done.")
                 
   return [ strain, rot, connectivity, cellIndex,  volStrain]

@@ -39,6 +39,7 @@ OUTPUTS:
 - Connectivity matrix
 - Coordinates of the barycentre
 """
+from __future__ import print_function
 
 # We want to calculate the derivative of the displacements in all directions:
 # du                                            dShapeFunction    dShapeFunction    ds                     ds
@@ -57,7 +58,7 @@ from tools.print_variable import pv
 def tetrahedral_elements_strain( positions, displacements, connectivity = None, mask = [] ):
 
   try: logging.log.info("tetrahedral_elements_strain(): Calculating strains using tetrahedral elements")
-  except: print "tetrahedral_elements_strain(): Calculating strains using tetrahedral elements"
+  except: print("tetrahedral_elements_strain(): Calculating strains using tetrahedral elements")
 
   positions = positions[:,[2,1,0]]
 
@@ -125,7 +126,7 @@ def tetrahedral_elements_strain( positions, displacements, connectivity = None, 
     
         try:
           if (nElements-elementNumber)%int(nElements/100) == 0:
-              print  "\tCompleted cells %2.2f %%\r"%( 100*((nElements-elementNumber))/float(nElements) ),
+              print("\tCompleted cells %2.2f %%\r"%( 100*((nElements-elementNumber))/float(nElements) ), end=' ')
         except:
           pass
 
@@ -173,6 +174,6 @@ def tetrahedral_elements_strain( positions, displacements, connectivity = None, 
   strain[ numpy.where(strain>10) ] = 0
 
   try: logging.log.info("tetrahedral_elements_strain: strain calculation done.")
-  except: print "tetrahedral_elements_strain: strain calculation done."
+  except: print("tetrahedral_elements_strain: strain calculation done.")
 
   return [ strain, rot, new_connectivity, coordinates ]

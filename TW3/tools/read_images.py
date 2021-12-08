@@ -26,8 +26,10 @@
 
 # ... File to read images ...
 
+from __future__ import print_function
+from __future__ import absolute_import
 import logging
-from print_variable import pv
+
 
 def read_raw_3D( image_data_format, image_size, base_dir, raw_base_name, extension, slices_range, crop ):
     """
@@ -47,13 +49,13 @@ def read_raw_3D( image_data_format, image_size, base_dir, raw_base_name, extensi
     
     filename = "%s/%s%s"%( base_dir, raw_base_name, extension )
     try: logging.log.debug( "read_raw_3D: Loading Full Volume: %s"%(filename) )
-    except: print "read_raw_3D: Loading Full Volume: %s"%(filename) 
+    except: print("read_raw_3D: Loading Full Volume: %s"%(filename))
 
     try:
       outputVolume = numpy.fromfile( filename, dtype=image_data_format )
     except:
       try: logging.log.warning( "read_raw_slices(): File %s not found "%filename )
-      except: print  "read_raw_slices(): File %s not found "%filename 
+      except: print("read_raw_slices(): File %s not found "%filename)
       outputVolume = []
       
     try:
@@ -104,7 +106,7 @@ def read_raw_slices( image_data_format, image_size, base_dir, raw_base_name, dig
             currentImage = numpy.fromfile( filename, dtype=image_data_format )
         except:
             try: logging.log.warning( "read_raw_slices(): File %s not found "%filename )
-            except: print "read_raw_slices(): File %s not found "%filename 
+            except: print("read_raw_slices(): File %s not found "%filename)
             currentImage = []
 
         try:
@@ -136,17 +138,17 @@ def read_tiff_3D( image_data_format, image_size, base_dir, base_name, extension,
     """    
 
     import numpy
-    import tifffile
+    from . import tifffile
 
     filename = "{}/{}{}".format( base_dir, base_name, extension )
     try: logging.log.debug( "Read_tiff_3D: Loading Full TIFF Volume: %s"%(filename) )
-    except: print "Read_tiff_3D: Loading Full TIFF Volume: %s"%(filename) 
+    except: print("Read_tiff_3D: Loading Full TIFF Volume: %s"%(filename))
 
     outputVolume =  tifffile.imread( filename )
     outputVolume = outputVolume[ slices_range[0]:slices_range[1]+1, crop[0][1]:crop[1][1]+1, crop[0][2]:crop[1][2]+1 ]
 
     try: logging.log.debug( "Read_tiff_3D: Volume mean value: %f"%( outputVolume.mean() ) )
-    except: print  "Read_tiff_3D: Volume mean value: %f"%( outputVolume.mean() ) 
+    except: print("Read_tiff_3D: Volume mean value: %f"%( outputVolume.mean() ))
 
     return outputVolume
 
@@ -168,7 +170,7 @@ def read_tiff_slices( image_data_format, imageDimensions, base_dir, tiff_base_na
     - crop                list of lists: [ [ x_min, x_max ], [ y_min, y_max ] ]
     """    
 
-    import tifffile
+    from . import tifffile
     import numpy
     
     # Erika: there should be a +1 here because if I want to load slices from 1 to 5 this give 5 slices and not 4
@@ -203,10 +205,10 @@ def read_tiff_slices( image_data_format, imageDimensions, base_dir, tiff_base_na
           except :
                 #print "\nread_tiff_slices(): Could not read slice "
               try: logging.log.warning( "read_tiff_slices(): File %s not found "%filename )
-              except: print "read_tiff_slices(): File %s not found "%filename 
+              except: print("read_tiff_slices(): File %s not found "%filename)
         
     try: logging.log.debug( "read_tiff_slices(): Volume mean value = %s"%(outputVolume.mean()) )
-    except: print "read_tiff_slices(): Volume mean value = %s"%(outputVolume.mean()) 
+    except: print("read_tiff_slices(): Volume mean value = %s"%(outputVolume.mean()))
     
     return outputVolume
   
@@ -281,10 +283,10 @@ def read_tiff_pil_slices( image_data_format, imageDimensions, base_dir, tiff_bas
 
         except :
             try: logging.log.warning( "read_tiff_slices(): File %s not found "%filename )
-            except: print "read_tiff_slices(): File %s not found "%filename 
+            except: print("read_tiff_slices(): File %s not found "%filename)
     
     try: logging.log.debug( "read_tiff_pil_slices(): Volume mean value = %s"%( outputVolume.mean() ) )
-    except: print "read_tiff_pil_slices(): Volume mean value = %s"%( outputVolume.mean() ) 
+    except: print("read_tiff_pil_slices(): Volume mean value = %s"%( outputVolume.mean() ))
         
     return outputVolume
   
@@ -304,7 +306,7 @@ def read_edf_slices( imageDimensions, base_dir, edf_base_name, digits, extension
     """    
 
     import numpy
-    import EdfFile
+    from . import EdfFile
     
     # ET: there should be a +1 here because if I wanto to load slices from 1 to 5 this give 5 slices and not 4 
     numberOfSlices = slices_range[1] - slices_range[0] + 1
@@ -335,11 +337,11 @@ def read_edf_slices( imageDimensions, base_dir, edf_base_name, digits, extension
                 
         except :
             try: logging.log.warning( "read_edf_slices(): File %s not found "%filename )
-            except: print "read_edf_slices(): File %s not found "%filename 
+            except: print("read_edf_slices(): File %s not found "%filename )
             pass
           
     try: logging.log.debug( "read_edf_pil_slices(): Volume mean value = %s"%( outputVolume.mean() ) )
-    except: print "read_edf_pil_slices(): Volume mean value = %s"%( outputVolume.mean() ) 
+    except: print("read_edf_pil_slices(): Volume mean value = %s"%( outputVolume.mean() ) )
 
     return outputVolume
   

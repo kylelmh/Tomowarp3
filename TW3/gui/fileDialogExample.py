@@ -24,6 +24,7 @@
 
 # Authors: Erika Tudisco, Edward Andò, Stephen Hall, Rémi Cailletaud
 
+from __future__ import print_function
 import Tkinter, Tkconstants, tkFileDialog
 
 #class TkFileDialogExample(Tkinter.Frame):
@@ -141,7 +142,7 @@ DIR_image_1 = "."
 def chooseDIR_image_1(  ):
     DIR_image_1 = tkFileDialog.askdirectory(parent=root,initialdir=os.path.expanduser("~"),title='Please select a directory for Image 1')
     if len( DIR_image_1 ) > 0:
-        print "You chose %s" % DIR_image_1
+        print("You chose %s" % DIR_image_1)
         entryDIR_image_1.delete( 0, Tkinter.END )
         entryDIR_image_1.insert( 0, DIR_image_1 )
     return DIR_image_1
@@ -166,7 +167,7 @@ DIR_image_2 = "."
 def chooseDIR_image_2(  ):
     DIR_image_2 = tkFileDialog.askdirectory(parent=root,initialdir=os.path.expanduser("~"),title='Please select a directory for Image 2')
     if len( DIR_image_2 ) > 0:
-        print "You chose %s" % DIR_image_2
+        print("You chose %s" % DIR_image_2)
         entryDIR_image_2.delete( 0, Tkinter.END )
         entryDIR_image_2.insert( 0, DIR_image_2 )
     return DIR_image_2
@@ -213,7 +214,7 @@ labelImage_format.grid( row=currentRow, column=0 )
 optionMenuImage_format = MyOptionMenu( root, 'Image Type', 'auto', 'Tiff', 'Raw', 'EDF' )
 optionMenuImage_format.grid( row=currentRow, column=1 )
 
-print (optionMenuImage_format.var).get()
+print((optionMenuImage_format.var).get())
 
 
 # ======== Button to print chosen variables:

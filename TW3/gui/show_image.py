@@ -24,10 +24,12 @@
 
 # Authors: Erika Tudisco, Edward Andò, Stephen Hall, Rémi Cailletaud
 
+from __future__ import print_function
+from __future__ import absolute_import
 from Tkinter import *
 from tools.tsv_tools import ReadTSV
 import numpy
-from colormap import Fire
+from .colormap import Fire
 from tools.print_variable import pv
 import matplotlib.pyplot as plt
 
@@ -167,7 +169,7 @@ class plot_component(Frame):
       self.dataMaxFixed = max_data
     
     except Exception as inst:
-       if VERBOSE: print type(inst), inst.args
+       if VERBOSE: print(type(inst), inst.args)
     
 
 class plot_matrix(Frame):
@@ -215,7 +217,7 @@ class plot_matrix(Frame):
         self.zoom_apply()
         
     except Exception as inst:
-       if VERBOSE: print type(inst), inst.args
+       if VERBOSE: print(type(inst), inst.args)
 
       
   def zoom_image_in( self ):

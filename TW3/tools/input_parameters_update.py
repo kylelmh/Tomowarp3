@@ -32,10 +32,12 @@
   
 The input to this file must be the Packaged (in lists)version of data
 """
+from __future__ import print_function
+from __future__ import absolute_import
 
 import numpy, logging
 
-from cpu_set import cpu_set_count
+from .cpu_set import cpu_set_count
 
 def input_parameters_update( data ):
     # 2015-03-02 EA: Adding an automatic measurement of number of available CPUs
@@ -46,7 +48,7 @@ def input_parameters_update( data ):
     if data.nWorkers == "auto":
         numberOfCPUs = cpu_set_count()
         try: logging.log.info("input_parameters_setup(): Number of CPUs %i"%( numberOfCPUs ))
-        except: print "input_parameters_setup(): Number of CPUs %i"%( numberOfCPUs )
+        except: print("input_parameters_setup(): Number of CPUs %i"%( numberOfCPUs ))
 
         data.nWorkers = max( 1, numberOfCPUs )
 
@@ -66,9 +68,9 @@ def input_parameters_update( data ):
           logging.log.info("memory of one slice of image1: %.1f MB"%(memSlice1 / 1024 / 1024))
           logging.log.info("memory of one slice of image2: %.1f MB"%(memSlice2 / 1024 / 1024))
         except:
-          print "memory limit:                  %.1f MB"%(data.memLimitMB)        
-          print "memory of one slice of image1: %.1f MB"%(memSlice1 / 1024 / 1024)
-          print "memory of one slice of image2: %.1f MB"%(memSlice2 / 1024 / 1024)
+          print("memory limit:                  %.1f MB"%(data.memLimitMB))        
+          print("memory of one slice of image1: %.1f MB"%(memSlice1 / 1024 / 1024))
+          print("memory of one slice of image2: %.1f MB"%(memSlice2 / 1024 / 1024))
 
 
     # grey thresholds -- update them if they're None.

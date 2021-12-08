@@ -26,6 +26,7 @@
 
 # ... VTK Tools ...
 
+from __future__ import print_function
 import numpy
 import logging
 
@@ -46,11 +47,11 @@ def WriteVTK_headers( filename, positions, mask = [], DATASET = "UNSTRUCTURED_GR
   if not isinstance(filename, file):
     fileHandle = open( filename, 'w')
     try: logging.log.info("WriteVTK_headers(): Going to write %s"%(filename))
-    except: print "WriteVTK_headers(): Going to write %s"%(filename)
+    except: print("WriteVTK_headers(): Going to write %s"%(filename))
   else:
     fileHandle = filename
     try: logging.log.info("WriteVTK_headers(): Going to write VTK file")
-    except: print "WriteVTK_headers(): Going to write VTK file"
+    except: print("WriteVTK_headers(): Going to write VTK file")
 
   fileHandle.seek(0)
 
@@ -90,11 +91,11 @@ def WriteVTK_maesh( filename, connectivity, position = 0, cell_type = 10):
   if not isinstance(filename, file):
     fileHandle = open( filename, 'r+')
     try: logging.log.info("WriteVTK_maesh(): Going to write %s"%(filename))
-    except: print "WriteVTK_maesh(): Going to write %s"%(filename)
+    except: print("WriteVTK_maesh(): Going to write %s"%(filename))
   else:
     fileHandle = filename
     try: logging.log.info("WriteVTK_maesh(): Going to write VTK file")
-    except: print "WriteVTK_maesh(): Going to write VTK file"
+    except: print("WriteVTK_maesh(): Going to write VTK file")
 
   before = fileHandle.read(position)
   after = fileHandle.read()
@@ -140,11 +141,11 @@ def WriteVTK_data( filename, name, data, mask = [], data_type = '', LOOKUP_TABLE
   if not isinstance(filename, file):
     fileHandle = open( filename, 'a')
     try: logging.log.info("WriteVTK_maesh(): Going to write %s"%(filename))
-    except: print "WriteVTK_maesh(): Going to write %s"%(filename)
+    except: print("WriteVTK_maesh(): Going to write %s"%(filename))
   else:
     fileHandle = filename
     try: logging.log.info("WriteVTK_maesh(): Going to write VTK file")
-    except: print "WriteVTK_maesh(): Going to write VTK file"
+    except: print("WriteVTK_maesh(): Going to write VTK file")
 
   fileHandle.seek(0,2)
 
@@ -168,7 +169,7 @@ def WriteVTK_data( filename, name, data, mask = [], data_type = '', LOOKUP_TABLE
               fileHandle.write( '%s\n'%'\t'.join(map(str, data[iPoint,[2,1,0]] ) ) )
       else:
           try: logging.log.warn("WriteVTK_headers(): Errors in data file. I can not write to VTK")
-          except: print "WriteVTK_headers(): Errors in data file. I can not write to VTK"
+          except: print("WriteVTK_headers(): Errors in data file. I can not write to VTK")
     except:
       if name != '':
         fileHandle.write('SCALARS %s float\n'%name);

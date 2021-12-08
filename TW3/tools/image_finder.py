@@ -44,11 +44,13 @@ OUTPUT:
 
 image_finder_data uptdate the "data" structure
 """
+from __future__ import print_function
+from __future__ import absolute_import
 
 import os, re, string
 import logging
 
-from print_variable import pv
+from .print_variable import pv
 
 def image_finder( directory="./", nameFilter="", extension="", digits=None ):
 
@@ -91,10 +93,10 @@ def image_finder( directory="./", nameFilter="", extension="", digits=None ):
           logging.log.info( "I am working on a single file: %s%s "%(prefix, extension)         )
           logging.log.info( "****************************************************************" )
         except:
-          print "**********************image_finder():***************************" 
-          print "In the directory: %s"%(directory)                                 
-          print "I am working on a single file: %s%s "%(prefix, extension)         
-          print "****************************************************************" 
+          print("**********************image_finder():***************************") 
+          print("In the directory: %s"%(directory))                                 
+          print("I am working on a single file: %s%s "%(prefix, extension))         
+          print("****************************************************************") 
 
     else:
         # otherwise we're in the regular case of having a certain number of digits -- in this case continue
@@ -117,18 +119,18 @@ def image_finder( directory="./", nameFilter="", extension="", digits=None ):
           logging.log.info( "In the directory: %s"%(directory)                                 )
           logging.log.info( "I am matching files %s[%0*i to %0*i]"%(prefix, int(digits), firstNumber, int(digits), lastNumber) )
         except:
-          print "**********************image_finder():***************************" 
-          print "In the directory: %s"%(directory)                                 
-          print "I am matching files %s[%0*i to %0*i]"%(prefix, int(digits), firstNumber, int(digits), lastNumber) 
+          print("**********************image_finder():***************************") 
+          print("In the directory: %s"%(directory))                                 
+          print("I am matching files %s[%0*i to %0*i]"%(prefix, int(digits), firstNumber, int(digits), lastNumber)) 
 
         for i in range(firstNumber,lastNumber):
             currentFile = "%s/%s%0*i%s"%( directory, prefix, int(digits), i, extension )
             if not os.path.isfile(currentFile):
               try: logging.log.warning( "I can not find file %s"%(currentFile) )
-              except: print  "I can not find file %s"%(currentFile) 
+              except: print("I can not find file %s"%(currentFile)) 
 
         try: logging.log.info( "****************************************************************" )
-        except: print  "****************************************************************" 
+        except: print("****************************************************************") 
         slices_extent = [firstNumber, lastNumber]
 
     return prefix, digits, slices_extent, extension

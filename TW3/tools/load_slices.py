@@ -41,7 +41,7 @@ OUTPUTS:
 """
 
 import numpy
-from read_images import read_images
+from tools.read_images import read_images
 
 
 def load_slices( zExtents, zExtents_prev, image, imageNumber, data):

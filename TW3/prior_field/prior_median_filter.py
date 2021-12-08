@@ -26,6 +26,7 @@
 
 # Deprecated. Moved to tools/kinematic_filters
 
+from __future__ import print_function
 import numpy
 
 import sys
@@ -35,8 +36,8 @@ from tools.calculate_node_spacing import calculate_node_spacing
 from tools.kinematic_filters import kinematics_remove_outliers
 
 def median_filter(  ):
-  print "  -> median_filter: This function is deprecated, please look in:"
-  print "     prior_field/prior_median_filter.py"
+  print("  -> median_filter: This function is deprecated, please look in:")
+  print("     prior_field/prior_median_filter.py")
 
 
 
@@ -83,11 +84,11 @@ def kinematics_median_filter_fnc( positions, displacements, filter_size ):
   number_of_displacements = displacements.shape[1]
 
   if positions.shape[1] != 3:
-      print "  -> kinematics_median_filter(): Not given three positions. Stopping."
+      print("  -> kinematics_median_filter(): Not given three positions. Stopping.")
       return -1
 
   if number_of_nodes != displacements.shape[0]:
-      print "  -> kinematics_median_filter(): Not given the same amout of positions and displacements. Stopping."
+      print("  -> kinematics_median_filter(): Not given the same amout of positions and displacements. Stopping.")
       return -1
 
   nodes_z, nodes_y, nodes_x = calculate_node_spacing( positions )
@@ -132,17 +133,17 @@ if __name__ == "__main__":
 
     argv = sys.argv[1:]
     if len(argv) < 2:
-      print 'Use: prior_median_filter <inputfile> <outputfile>'
+      print('Use: prior_median_filter <inputfile> <outputfile>')
       sys.exit(2)
 
     prior_file = argv[0]
     output_file = argv[1]
 
-    print "prior_file = ",prior_file
+    print("prior_file = ",prior_file)
 
-    print "  -> Reading prior field..."
+    print("  -> Reading prior field...")
     prior = ReadTSV( prior_file,  "NodeNumber", [ "Zpos", "Ypos", "Xpos", "Zdisp", "Ydisp", "Xdisp" ], [1,0] ).astype( '<f4' )
-    print "  -> Reading finished...\n"
+    print("  -> Reading finished...\n")
 
     prior_filtered = prior.copy()
     #prior_filtered[ :, 4:7 ] = kinematics_median_filter_fnc( prior[ :, 1:4 ], prior[ :, 4:7 ] )

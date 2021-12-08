@@ -46,12 +46,14 @@ INPUTS:
 OUTPUTS:
  1. list with subpixel displacements and NCC
 """
+from __future__ import print_function
 
 import numpy
+import logging
 
 # Why this function and not the pixel_search in C?
 from tools.calculate_cc import calculate_ncc
-#from tools.pytricubic import tricubic
+# from tools.pytricubic import tricubic
 
 import scipy
 import scipy.optimize
@@ -183,7 +185,7 @@ def image_interpolation_translation_rotation( im1, im2, initialGuess=None, corne
 
       # 2015-12-17 EA: case condition for 2D
       if not ( im1Dim[0] == 1 and im2Dim[0] == 1 and ( im2Dim[1] - im1Dim[1] ) == 2*cornerOffset and ( im2Dim[2] - im1Dim[2] ) == 2*cornerOffset ) and not all( ( im2Dim - im1Dim ) == 2*cornerOffset ):
-          loging.log.warning("image_interpolation_translation_rotation(): (im2Dim - im1Dim) should be 2*cornerOffset but it is {}".format((im2Dim - im1Dim)))
+          logging.log.warning("image_interpolation_translation_rotation(): (im2Dim - im1Dim) should be 2*cornerOffset but it is {}".format((im2Dim - im1Dim)))
           if Rot:
               return [ [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ], 0.0, numpy.NaN, 32 ]
           else:
@@ -257,14 +259,14 @@ def image_interpolation_translation_rotation( im1, im2, initialGuess=None, corne
           z  = subPixelSearchRange[ numpy.where( ccMatrix == ccMatrix.min() )[0] ][0]
           y  = subPixelSearchRange[ numpy.where( ccMatrix == ccMatrix.min() )[1] ][0]
           x  = subPixelSearchRange[ numpy.where( ccMatrix == ccMatrix.min() )[2] ][0]
-          loging.log.debug( "image_interpolation_translation_rotation: subPixelSearch: Min CC: {}".format(cc))
-          loging.log.debug( "image_interpolation_translation_rotation: subPixelSearch: Min CC location: {} {} {}".format(x, y, z) ) 
+          logging.log.debug( "image_interpolation_translation_rotation: subPixelSearch: Min CC: {}".format(cc))
+          logging.log.debug( "image_interpolation_translation_rotation: subPixelSearch: Min CC location: {} {} {}".format(x, y, z) ) 
 
           return [ [ z, y, x,0,0,0 ], cc, len(subPixelSearchRange)**3, 0 ]
 
       else:
           try: logging.log.error("image_interpolation_translation_rotation: optimisation mode \"{}\" unknown".format( optimisationMode ) )
-          except: print "image_interpolation_translation_rotation: optimisation mode \"{}\" unknown".format( optimisationMode ) 
+          except: print("image_interpolation_translation_rotation: optimisation mode \"{}\" unknown".format( optimisationMode ))
           if Rot:
             return [ [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ], 0.0, 0.0, 999 ]
           else:

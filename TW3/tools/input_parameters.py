@@ -28,12 +28,14 @@
 
 # Functions that check the given parameters and ask for image properties
 
+from __future__ import print_function
+from __future__ import absolute_import
 import logging
 
-from input_parameters_setup import input_parameters_setup
-from image_finder import image_finder_data
-from image_size_and_type import image_size_and_type
-from print_variable import pv
+from .input_parameters_setup import input_parameters_setup
+from .image_finder import image_finder_data
+from .image_size_and_type import image_size_and_type
+from .print_variable import pv
 
 
 def input_parameters( data ):
@@ -46,11 +48,11 @@ def input_parameters( data ):
     data = image_size_and_type( data )
 
     try: logging.log.info("\nInput parameters:")
-    except: print "\nInput parameters:"
+    except: print("\nInput parameters:")
     for key in sorted( data.iterkeys() ):
       try: logging.log.info( pv([data[key]],'\t',False,key, _print=False) )
-      except: print pv([data[key]],'\t',False,key, _print=False) 
+      except: print(pv([data[key]],'\t',False,key, _print=False)) 
     try: logging.log.info('\n')
-    except: print '\n'
+    except: print('\n')
 
     return data

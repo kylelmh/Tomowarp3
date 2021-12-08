@@ -24,15 +24,17 @@
 
 # Authors: Erika Tudisco, Edward Andò, Stephen Hall, Rémi Cailletaud
 
+from __future__ import print_function
+from __future__ import absolute_import
 import os, sys, time
 from Tkinter import *
 import Tkconstants, tkFileDialog, tkMessageBox
 import re, traceback
 
-from guiFunctions import *
-from minimalFrame import *
-from optionalFrame import *
-from postprocFrame import *
+from .guiFunctions import *
+from .minimalFrame import *
+from .optionalFrame import *
+from .postprocFrame import *
 
 from tools.print_variable import pv
 from tools.input_parameters import *
@@ -165,7 +167,7 @@ class ControlButton(Frame):
               logging.err.error( exc.message )
               logging.err.removeHandler(fh_err)
             except:
-              print exc.message
+              print(exc.message)
 
         self.message.set("")
         ChooseImageDimensions.setvalues(self.master.imagesDim, self.master)

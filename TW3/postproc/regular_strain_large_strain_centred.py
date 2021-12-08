@@ -47,6 +47,7 @@ OUTPUTS:
 - Rotation matrix (3x3 matrix)
 - Connectivity
 """
+from __future__ import print_function
 
 # We want to calculate the derivative of the displacements in all directions:
 # du                                            dShapeFunction    dShapeFunction    ds                     ds
@@ -70,8 +71,8 @@ def regular_strain_large_strain_centred( positions, displacements, neighbourhood
 
   try: logging.log.info("regular_strain_large_strain_centered(): Calculating strains in Large Deformations framework \
         \n (Geers et al., 1996, Computing strain felds from discrete displacement fields in 2D-solids ) taking neighbours plus or minus {:d}".format(neighbourhoodDistance) )
-  except: print "regular_strain_large_strain_centered(): Calculating strains in Large Deformations framework \
-        \n (Geers et al., 1996, Computing strain felds from discrete displacement fields in 2D-solids ) taking neighbours plus or minus {:d}".format(neighbourhoodDistance)
+  except: print("regular_strain_large_strain_centered(): Calculating strains in Large Deformations framework \
+        \n (Geers et al., 1996, Computing strain felds from discrete displacement fields in 2D-solids ) taking neighbours plus or minus {:d}".format(neighbourhoodDistance))
 
   nodalRealtivePositionsRef  = numpy.zeros( ( numberOfNeighbours, 3 ) ) # Delta_X_0 in document
   nodalRealtivePositionsDef  = numpy.zeros( ( numberOfNeighbours, 3 ) ) # Delta_X_t in document
@@ -124,7 +125,7 @@ def regular_strain_large_strain_centred( positions, displacements, neighbourhood
   #-    i.e., fill in the nodalDisplacements matrix  numpy.zeros( ( 8, 3 ) )            --
   #-----------------------------------------------------------------------
   for z in range( neighbourhoodDistance, len(nodes_z) - neighbourhoodDistance ):
-      print "\tregular_strain_large_strain_centred: Working on z=%04i/%04i\r"%( z, len(nodes_z)-1 ),
+      print("\tregular_strain_large_strain_centred: Working on z=%04i/%04i\r"%( z, len(nodes_z)-1 ), end=' ')
       for y in range( neighbourhoodDistance, len(nodes_y) - neighbourhoodDistance ):
           for x in range( neighbourhoodDistance, len(nodes_x) - neighbourhoodDistance ):
               sX0X0 = numpy.zeros( (3,3) )
@@ -194,13 +195,13 @@ def regular_strain_large_strain_centred( positions, displacements, neighbourhood
                         connectivity = numpy.append( connectivity, [ [ x+len(nodes_x)*y+len(nodes_x)*len(nodes_y)*z ] ], axis=0 )
 
                 except numpy.linalg.linalg.LinAlgError:
-                    print "\tLinAlgError: A", A
+                    print("\tLinAlgError: A", A)
                     strain[ z, y, x, :, : ] = numpy.zeros( (3,3) ) * numpy.nan
                     rot[ z, y, x, :, : ]    = numpy.zeros( (3,3) ) * numpy.nan
                     volStrain[ z, y, x ] = numpy.nan
 
 
   try: logging.log.info("regular_strain_large_strain_centered(): strain calculation done.")
-  except: print "regular_strain_large_strain_centered(): strain calculation done."
+  except: print("regular_strain_large_strain_centered(): strain calculation done.")
   
   return [ strain, rot, connectivity, volStrain]

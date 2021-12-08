@@ -28,9 +28,10 @@
 
 # Functions that read parameters from an input file and set the default values
 
+from __future__ import absolute_import
 import os, numpy
 from os.path import expanduser
-from print_variable import pv
+from .print_variable import pv
 
 
 def required_parameters( data={} ):
@@ -222,7 +223,7 @@ def input_parameters_read( inputfile, data_input={} ):
 
     if 'errorLimit' in data.keys():
         data['errorLowLimit']  = data['errorLimit'][0]
-        data['errorHighLimit'] = data['errorLimit'][01]
+        data['errorHighLimit'] = data['errorLimit'][0o1]
 
     if not ('DIR_out' in data):
         data['DIR_out'] = os.path.dirname(inputfile)

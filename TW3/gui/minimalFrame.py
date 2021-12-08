@@ -24,13 +24,14 @@
 
 # Authors: Erika Tudisco, Edward Andò, Stephen Hall, Rémi Cailletaud
 
+from __future__ import absolute_import
 import os, sys
 from os.path import expanduser
 from Tkinter import *
 import Tkconstants, tkFileDialog, tkMessageBox
 
-from guiFunctions import *
-from optionalFrame import *
+from .guiFunctions import *
+from .optionalFrame import *
 
 from tools.print_variable import pv
 
@@ -152,7 +153,7 @@ class Minimal_setup(Frame):
     def buid_ouputfilename(self, *args ):
       # To update the output name the variable "name_prefix" is set equal to itself 
       try:
-        from optionalFrame import Optional_setup
+        from .optionalFrame import Optional_setup
         Optional_setup.variables['name_prefix'].set( Optional_setup.variables['name_prefix'].get() )
       except:
         pass

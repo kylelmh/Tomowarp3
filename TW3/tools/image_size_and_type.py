@@ -30,10 +30,12 @@
 Functions that check the image_format and ask for it if necessary then read the first 
 images in the two folders and determine their size and type
 """
+from __future__ import print_function
+from __future__ import absolute_import
 
 import tifffile, numpy, getopt, re, sys
 import logging
-from print_variable import pv
+from .print_variable import pv
 
 try:
   from PIL import Image
@@ -118,7 +120,7 @@ def image_size_and_type( data ):
 
     elif re.compile( r"\.[Ee][Dd][Ff]" ).match(data.image_ext):
 
-        import EdfFile
+        from . import EdfFile
 
         if data.image_format == None or data.image_format == "EDF":
           data.image_format = "EDF"
@@ -151,7 +153,7 @@ def image_size_and_type( data ):
                 data.image_slices_extent[im] = [ 0, data.image_size[im,0]-1 ]
               else:
                 try: logging.log.debug( "image_size_and_type(): I got data.image_slices_extent == None, but I'm in a 2D file... " )
-                except: print "image_size_and_type(): I got data.image_slices_extent == None, but I'm in a 2D file... " 
+                except: print("image_size_and_type(): I got data.image_slices_extent == None, but I'm in a 2D file... ") 
                 data.image_slices_extent[im] = [ 0, 0 ]
 
           # === Update ROI to whole volume if missing === #

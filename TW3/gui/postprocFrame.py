@@ -25,23 +25,25 @@
 # Authors: Erika Tudisco, Edward Andò, Stephen Hall, Rémi Cailletaud
 
 # -*- coding: utf-8 -*-
+from __future__ import print_function
+from __future__ import absolute_import
 import os, sys
 from os.path import expanduser
 import logging
 from Tkinter import *
 import Tkconstants, tkFileDialog, tkMessageBox
 
-from Frames import *
-from guiFunctions import *
-from minimalFrame import *
-from optionalFrame import *
+from .Frames import *
+from .guiFunctions import *
+from .minimalFrame import *
+from .optionalFrame import *
 
 from tools.print_variable import pv
 from tools.tsv_tools import ReadTSV, WriteTSV
 from tools.calculate_node_spacing import calculate_node_spacing
 from tools.kinematic_filters import kinematics_remove_outliers, kinematics_median_filter_fnc
 from postproc.process_results import process_results, construct_mask
-from show_image import plot_matrix
+from .show_image import plot_matrix
 
 
 class Postproc_setup(Frame):
@@ -272,7 +274,7 @@ class Postproc_setup(Frame):
             logging.gui.debug( traceback.format_exc() )
             logging.gui.error( exc.message )
           except:
-            print exc.message
+            print(exc.message)
           tkMessageBox.showinfo("TomoWarp2 Error", exc.message)
         running.destroy()
 
@@ -293,7 +295,7 @@ class Postproc_setup(Frame):
         # Remove outliers
         if remove_outliers_filter_size > 0:
             try: logging.gui.info("process_results(): Removing outliers"); 
-            except: print "process_results(): Removing outliers"
+            except: print("process_results(): Removing outliers")
             try:
                 #kinematics[ :, 4:10 ] = kinematics_median_filter_fnc( kinematics[ :, 1:4 ], kinematics[ :, 4:10 ], kinematics_median_filter )
                 [self.kinematics[ :, 4:10 ], mask_outliers] = kinematics_remove_outliers( self.kinematics[ :, 1:4 ], self.kinematics[ :, 4:10 ], \
@@ -301,26 +303,26 @@ class Postproc_setup(Frame):
                 # if the filter assign a finit value to a point that had previously an error, thi is set to zero
                 self.kinematics[ numpy.isfinite(self.kinematics[:,4]) , 11 ] = 0
                 try: logging.gui.info("process_results(): Done!"); 
-                except: print "process_results(): Done!"
+                except: print("process_results(): Done!")
             except Exception as exc:
                 try: logging.gui.warn(exc.message); 
-                except: print exc.message
+                except: print(exc.message)
 
         # filter kinematics...
         if kinematics_median_filter > 0:
             try:
               logging.gui.info("process_results(): Applying a Kinematics Median filter of {:0.1f} (3 means ±1)".format( kinematics_median_filter ))
             except:
-              print "process_results(): Applying a Kinematics Median filter of {:0.1f} (3 means ±1)".format( kinematics_median_filter )
+              print("process_results(): Applying a Kinematics Median filter of {:0.1f} (3 means ±1)".format( kinematics_median_filter ))
             try:
                 self.kinematics[ :, 4:10 ] = kinematics_median_filter_fnc( self.kinematics[ :, 1:4 ], self.kinematics[ :, 4:10 ], kinematics_median_filter )
                 # if the filter assign a finit value to a point that had previously an error, thi is set to zero
                 self.kinematics[ numpy.isfinite(self.kinematics[:,4]) , 11 ] = 0
                 try: logging.gui.info("process_results(): Done!"); 
-                except: print "process_results(): Done!"
+                except: print("process_results(): Done!")
             except Exception as exc:
                 try: logging.gui.warn(exc.message); 
-                except: print exc.message
+                except: print(exc.message)
             
         intList = [ 'kinematics_median_filter', 'remove_outliers_filter_size', 'remove_outliers_threshold', 'remove_outliers_absolut_threshold', \
                     'remove_outliers_filter_high', 'filter_base_field']

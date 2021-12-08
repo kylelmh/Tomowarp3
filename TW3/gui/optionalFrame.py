@@ -24,14 +24,15 @@
 
 # Authors: Erika Tudisco, Edward Andò, Stephen Hall, Rémi Cailletaud
 
+from __future__ import absolute_import
 import os, sys
 from os.path import expanduser
 from Tkinter import *
 import Tkconstants, tkFileDialog, tkMessageBox
 
-from guiFunctions import *
+from .guiFunctions import *
 
-from Frames import *
+from .Frames import *
 
 from tools.print_variable import pv
 
@@ -191,7 +192,7 @@ class Optional_setup(Frame):
 
     def buid_ouputfilename( self, *args ):
     # This function contruct the output filename from "Sample", "name_1", "name_2", and "node_spacing"
-        from minimalFrame import Minimal_setup
+        from .minimalFrame import Minimal_setup
         if not self.variables['name_prefix'].get() == "":
           output_name = "%s-%s-%s"%( self.variables['name_prefix'].get(), \
                                       self.variables['name_1'].get(), self.variables['name_2'].get() )

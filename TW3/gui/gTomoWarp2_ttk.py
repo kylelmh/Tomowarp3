@@ -27,16 +27,18 @@
 #!/usr/bin/env python
 
 
+from __future__ import print_function
+from __future__ import absolute_import
 import os, sys, platform
 from os.path import expanduser
 from Tkinter import *
 import Tkconstants, tkFileDialog, tkMessageBox, ttk
 
-from guiFunctions import *
-from Frames import *
-from minimalFrame import *
-from optionalFrame import *
-from postprocFrame import *
+from .guiFunctions import *
+from .Frames import *
+from .minimalFrame import *
+from .optionalFrame import *
+from .postprocFrame import *
 
 from tools.print_variable import pv
 from tools.input_parameters import input_parameters
@@ -101,7 +103,7 @@ def loadFile( root, inputFile=None, data={} ):
         if not ( inputFile=='' or inputFile == () ):
           root.homeDir =  os.path.dirname(inputFile)
           try: logging.log.info( pv( [inputFile], '', False ) ); 
-          except: print pv( [inputFile], '', False )
+          except: print(pv( [inputFile], '', False ))
           data = input_parameters_read( inputFile, data )
           data = required_parameters(data)
           # If existing the frames are destroyed
@@ -112,11 +114,11 @@ def loadFile( root, inputFile=None, data={} ):
             pass
     except IOError as exc:
         try: logging.log.warning( exc ); 
-        except: print exc
+        except: print(exc)
         ShowInfo( root, "TomoWarp2 Error", 'File not found' )
     except:
         try: logging.log.warning( 'File not recognized' ); 
-        except: print 'File not recognized'
+        except: print('File not recognized')
         ShowInfo( root, "TomoWarp2 Error", 'File not recognized' )
         
     # Frames are created

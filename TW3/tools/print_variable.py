@@ -34,6 +34,7 @@ Input:
   3. If the name of the function is printed or not
   4. variable name if not found automatically
 """
+from __future__ import print_function
 
 import sys
 import inspect
@@ -100,6 +101,6 @@ def pv(variables, tabulator = '\t', print_function = True, varName = None, _prin
             else:
                 string += tabulator
 
-        if _print: print string,
+        if _print: print((string), end=' ')
 
         return string

@@ -46,6 +46,7 @@ OUTPUTS:
  1. Strain Tensor   (3x3 tensor)
  2. Rotation matrix (3x3 matrix)
 """
+from __future__ import print_function
 
 import numpy
 
@@ -55,7 +56,7 @@ from tools.calculate_node_spacing import calculate_node_spacing
 def regular_strain( positions, displacements ):
 
   # s is local coordinates
-  print "  -> Calculating strain...",
+  print("  -> Calculating strain...", end=' ')
 
   dNds  = numpy.zeros( ( 3, 8 ) ) # Shape function derivative?!
   xn    = numpy.zeros( ( 8, 3 ) ) # RELATIVE Node positions
@@ -98,7 +99,7 @@ def regular_strain( positions, displacements ):
   # If the node spacing is not the same in every direction, we're not sure that this
   #   can work.
   if z_spacing != y_spacing or z_spacing != x_spacing:
-    print "regular_strain(): the spacing is different, and I'm not sure I can handle this. Stopping."
+    print("regular_strain(): the spacing is different, and I'm not sure I can handle this. Stopping.")
     sys.exit()
 
   # Define strain matrix
@@ -204,6 +205,6 @@ def regular_strain( positions, displacements ):
              # 2014-10-13 Also filtering rot matrix
              rot[   z,y,x,d] = 0.0
 
-  print "done."
+  print("done.")
   return [ strain, rot ]
 

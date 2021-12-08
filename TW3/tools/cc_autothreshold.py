@@ -27,6 +27,7 @@
 """
 Automatically calculate the CC threshold based on histogram 
 """
+from __future__ import print_function
 
 # Date created: 2013-08-20
 
@@ -51,6 +52,6 @@ def cc_autothreshold( cc_field ):
       cc_threshold = bin_edges[ numpy.where( cc_hist < 0.015 * cc_hist.max() ) ][-1]
             
       try: logging.log.info( "  Automatic CC threshold calculator: I chose a CC value of: %f"%(cc_threshold) )
-      except: print  "  Automatic CC threshold calculator: I chose a CC value of: %f"%(cc_threshold) 
+      except: print("  Automatic CC threshold calculator: I chose a CC value of: %f"%(cc_threshold)) 
 
       return cc_threshold

@@ -42,7 +42,8 @@ import numpy
 import logging
 
 # This is our pixel_search C-code
-from pixel_search.c_code import pixel_search
+# from pixel_search.c_code import pixel_search
+import pixel_search
 from sub_pixel.cc_interpolation import cc_interpolation_local, \
     cc_interpolation_local_2D
 from sub_pixel.image_interpolation_translation_rotation import \
